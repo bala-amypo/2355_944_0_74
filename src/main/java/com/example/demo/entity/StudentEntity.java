@@ -4,10 +4,12 @@ import java.time.LocalDate;
 
 public class StudentEntity {
     @id
+    @GeneratedValue(Strategy= GenerationType.IDENTITY)
     private int id;
+     @GeneratedValue(Strategy= GenerationType.Auto)
     private String name;
+    @column(name=unique)
     private String email;
-    private float cgpa;
     public String getName() {
         return name;
     }
