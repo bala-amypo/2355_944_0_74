@@ -27,7 +27,19 @@ public class StudentController {
     public  StudentEntity getIdVal(@PathVariable int id){
         return src.id(id);
     }
-    
+    @PutMapping("/update/{id}")
+     public String update(@PathVariable Long id, @RequestBody Student newStudent) {
+
+    Optional<Student> student = studentService.getOneStudent(id);
+
+    if (student.isPresent()) {
+        newStudent.setId(id);
+        studentService.insertStudent(newStudent);
+        return "Updated Success";
+    }
+
+    return "Id not found";
+}
    
 }
     
