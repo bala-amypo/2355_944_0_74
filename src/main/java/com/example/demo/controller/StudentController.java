@@ -7,26 +7,27 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import com.example.project.entity.Studententity;
-import com.example.project.service.Stdnetservice;
+import com.example.project.entity.StudentEntity;
+import com.example.project.service.StudentService;
 import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController
 public class StudentController {
     @Autowired
-    StudnetService src;
+    StudentService src;
     @PostMapping("/post")
-    public Studententity postdata(@RequestBody Studententity st){
+    public StudentEntity postdata(@RequestBody StudentEntity st){
                 return src.savedata(st);
     }
     @GetMapping("/get")
-    public List<Studententity> getData(){
+    public List<StudentEntity> getData(){
         return src.redata();
     }
     @GetMapping("/get/{id}")
-    public  Studententity getIdVal(@PathVariable int id){
+    public  StudentEntity getIdVal(@PathVariable int id){
         return src.id(id);
     }
+    
    
 }
     
