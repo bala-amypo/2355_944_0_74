@@ -1,47 +1,41 @@
-package com.example.project.entity;
+package com.example.demo.entity;
 
-import java.time.LocalDate;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 
+@Entity
+@Table(name = "student")
 public class StudentEntity {
-    @id
-    @GeneratedValue(Strategy= GenerationType.IDENTITY)
-    private int id;
-     @GeneratedValue(Strategy= GenerationType.Auto)
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @NotBlank(message = "Name should not be blank")
+    @Column(unique = true)
     private String name;
-    @column(name=unique)
+
+    @NotBlank(message = "Email should not be blank")
+    @Email(message = "Invalid email format")
     private String email;
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-    public int getId() {
-        return id;
-    }
-    public void setId(int id) {
-        this.id = id;
-    }
-    public LocalDate getDate() {
-        return date;
-    }
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-    public float getCgpa() {
-        return cgpa;
-    }
-    public void setCgpa(float cgpa) {
-        this.cgpa = cgpa;
-    }
-    public StudentEntity(String name, int id, LocalDate date, float cgpa) {
-        this.name = name;
-        this.id = id;
-        this.date = date;
-        this.cgpa = cgpa;
-    }
+
     public StudentEntity() {
     }
-   
-    
+
+    public StudentEntity(Long id, String name, String email) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+    }
+
+    // Getters & Setters
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
 }
